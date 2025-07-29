@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            text-align: left;
+        }
+
+        .header {
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .message {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .summary {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-family: monospace;
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #777;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">Account Information Updated</div>
+        <div class="message">
+            Hello <strong>{{FullName}}</strong>,<br /><br />
+            This is to inform you that changes have been made to your account on <strong>Poktco</strong>.<br /><br />
+            Here is a summary of the changes:
+            <div class="summary">
+                {{ChangeSummary}}
+            </div><br />
+            If you did not authorize this action, please contact our support team immediately to ensure your account’s security.
+        </div>
+        <div class="footer">
+            Regards,<br />
+            <strong>Poktco Support Team</strong><br />
+            SMS System • Developed by Ziad Bahaa
+        </div>
+    </div>
+</body>
+</html>

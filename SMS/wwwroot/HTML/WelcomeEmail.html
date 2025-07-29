@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome Email</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9f1f7;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .email-wrapper {
+            max-width: 650px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background-color: #0078D4;
+            color: #ffffff;
+            padding: 25px 30px;
+            text-align: center;
+        }
+
+            .header h1 {
+                margin: 0;
+                font-size: 24px;
+                letter-spacing: 0.5px;
+            }
+
+        .content {
+            padding: 30px;
+        }
+
+            .content p {
+                font-size: 16px;
+                line-height: 1.7;
+                margin: 15px 0;
+            }
+
+        .credentials {
+            background-color: #f3f8fc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #0078D4;
+            margin-top: 20px;
+        }
+
+            .credentials p {
+                margin: 8px 0;
+                font-size: 15px;
+            }
+
+            .credentials strong {
+                display: inline-block;
+                width: 90px;
+                color: #0078D4;
+            }
+
+        .footer {
+            text-align: center;
+            font-size: 13px;
+            color: #777;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-wrapper">
+        <div class="header">
+            <h1>Welcome to Student Management System</h1>
+        </div>
+        <div class="content">
+            <p>Hi <strong>{{FullName}}</strong>,</p>
+
+            <p>We’re excited to have you onboard! Your account has been created successfully. Here are your login credentials:</p>
+
+            <div class="credentials">
+                <p><strong>Email:</strong> {{Email}}</p>
+                <p><strong>Password:</strong> {{Password}}</p>
+                <p><strong>Role:</strong> {{Role}}</p>
+            </div>
+
+            <p>Please make sure to log in and change your password as soon as possible to protect your account.</p>
+
+            <p>If you face any issues, feel free to reach out to our support team.</p>
+        </div>
+        <div class="footer">
+            &copy; 2025 Student Management System. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>
