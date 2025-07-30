@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SMS.Core.DTOs.Student
+namespace SMS.Core.DTOs.StudentCourse
 {
-    public class UpdateStudentDto 
+    public class GetStudentCoursesDto
     {
+        public string? StudentId { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
-        public string? Email { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public List<StudentCourseDto> Courses { get; set; } = new();
     }
+
 }

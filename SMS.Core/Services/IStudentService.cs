@@ -13,6 +13,6 @@ namespace SMS.Core.Services
         Task<ApiResponse<List<GetAllStudentDto>>> GetAllStudentsAsync();
         Task<ApiResponse<GetStudentByIdDto>> GetStudentByIdAsync(string id);
         Task<ApiResponse<string>> UpdateStudentAsync(string id, UpdateStudentDto dto);
-        Task<ApiResponse<bool>> DeleteStudentAsync(string id);
+        Task<ApiResponse<string>> DeleteStudentAsync(string id);
     }
 }

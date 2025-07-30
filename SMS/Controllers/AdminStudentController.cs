@@ -15,8 +15,7 @@ namespace SMS.Controllers
             _studentService = studentService;
         }
 
-      
-
+     
         [HttpPut("UpdateStudent/{id}")]
         public async Task<IActionResult> UpdateStudent(string id, [FromBody] UpdateStudentDto dto)
         {

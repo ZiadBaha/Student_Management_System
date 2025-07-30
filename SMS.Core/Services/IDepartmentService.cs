@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SMS.Repository.Services
+namespace SMS.Core.Services
 {
     public interface IDepartmentService
     {

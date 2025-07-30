@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SMS.Core.DTOs.Department;
+using SMS.Core.Services;
 using SMS.Repository.Services;
 
 namespace SMS.Controllers

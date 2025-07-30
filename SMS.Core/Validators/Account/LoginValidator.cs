@@ -12,7 +12,6 @@ namespace SMS.Core.Validators.Account
     {
         public LoginValidator()
         {
-            //RuleFor(x => x.Email).NotEmpty().EmailAddress();
             RuleFor(x => x.Email).NotEmpty();
             RuleFor(x => x.Password).NotEmpty();
         }

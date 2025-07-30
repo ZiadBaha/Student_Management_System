@@ -32,6 +32,10 @@ namespace SMS.Extensions
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IDepartmentService, DepartmentService>();
             services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<ICourseService, CourseService>();
+            services.AddScoped<ITeacherService, TeacherService>();
+            services.AddScoped<IStudentCourseService, StudentCourseService>();
+            services.AddScoped<ITeacherCourseService, TeacherCourseService>();
 
 
 

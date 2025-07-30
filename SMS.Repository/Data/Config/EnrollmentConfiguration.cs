@@ -15,7 +15,8 @@ namespace SMS.Repository.Data.Config
         {
             builder.HasOne(e => e.Student)
                    .WithMany(s => s.Enrollments)
-                   .HasForeignKey(e => e.StudentId);
+                   .HasForeignKey(e => e.StudentId)
+                   .HasPrincipalKey(s => s.AppUserId); 
 
             builder.HasOne(e => e.Course)
                    .WithMany(c => c.Enrollments)
@@ -25,4 +26,5 @@ namespace SMS.Repository.Data.Config
                    .HasColumnType("decimal(5,2)");
         }
     }
+
 }

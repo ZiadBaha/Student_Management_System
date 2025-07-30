@@ -51,7 +51,6 @@ namespace SMS.Repository.Services
                 return new ApiResponse<List<GetAllStudentDto>>(500, "An error occurred while retrieving students");
             }
         }
-
         public async Task<ApiResponse<GetStudentByIdDto>> GetStudentByIdAsync(string id)
         {
             try
@@ -72,7 +71,6 @@ namespace SMS.Repository.Services
                 return new ApiResponse<GetStudentByIdDto>(500, "An error occurred while retrieving the student");
             }
         }
-
         public async Task<ApiResponse<string>> UpdateStudentAsync(string id, UpdateStudentDto dto)
         {
             try
@@ -100,8 +98,7 @@ namespace SMS.Repository.Services
                 return new ApiResponse<string>(500, "An error occurred while updating the student");
             }
         }
-
-        public async Task<ApiResponse<bool>> DeleteStudentAsync(string id)
+        public async Task<ApiResponse<string>> DeleteStudentAsync(string id)
         {
             try
             {
@@ -110,19 +107,20 @@ namespace SMS.Repository.Services
                     .FirstOrDefaultAsync(s => s.AppUserId == id);
 
                 if (student == null)
-                    return new ApiResponse<bool>(404, "Student not found");
+                    return new ApiResponse<string>(404, "Student not found");
 
                 _context.Students.Remove(student);
                 await _userManager.DeleteAsync(student.AppUser);
                 await _context.SaveChangesAsync();
 
-                return new ApiResponse<bool>(200, "Student deleted successfully", true);
+                return new ApiResponse<string>(200, "Student deleted successfully");
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error while deleting student");
-                return new ApiResponse<bool>(500, "An error occurred while deleting the student");
+                return new ApiResponse<string>(500, "An error occurred while deleting the student");
             }
         }
+
     }
 }

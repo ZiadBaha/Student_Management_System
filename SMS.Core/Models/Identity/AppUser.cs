@@ -15,8 +15,5 @@ namespace SMS.Core.Models.Identity
         public UserRole UserRole { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
-
-   
-
     }
 }

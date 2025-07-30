@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using SMS.Core.Common;
 using SMS.Core.DTOs.Department;
 using SMS.Core.Models.Entities;
+using SMS.Core.Services;
 using SMS.Repository.Data.Context;
 using System;
 using System.Collections.Generic;
@@ -131,7 +132,7 @@ namespace SMS.Repository.Services
 
                 var teacherDtos = department.Teachers.Select(t => new DepartmentTeacherDto
                 {
-                    Id = t.Id,
+                    Id = t.AppUser.Id,
                     FirstName = t.AppUser.FirstName,
                     LastName = t.AppUser.LastName,
                     Email = t.AppUser.Email
