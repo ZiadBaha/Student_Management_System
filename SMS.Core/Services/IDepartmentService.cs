@@ -1,4 +1,5 @@
-﻿using SMS.Core.Common;
+﻿using Microsoft.AspNetCore.Http;
+using SMS.Core.Common;
 using SMS.Core.DTOs.Department;
 using System;
 using System.Collections.Generic;
@@ -16,5 +17,10 @@ namespace SMS.Core.Services
         Task<ApiResponse<bool>> UpdateDepartmentAsync(UpdateDepartmentDto dto);
         Task<ApiResponse<bool>> DeleteDepartmentAsync(int id);
         Task<ApiResponse<List<DepartmentTeacherDto>>> GetDepartmentTeachersAsync(int departmentId);
+
+
+
+        Task<ApiResponse<byte[]>> ExportDepartmentsToExcelAsync();
+        Task<ApiResponse<string>> ImportDepartmentsFromExcelAsync(IFormFile file);
     }
 }

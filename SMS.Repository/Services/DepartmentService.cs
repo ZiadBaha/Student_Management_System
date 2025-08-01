@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ClosedXML.Excel;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SMS.Core.Common;
@@ -146,5 +148,71 @@ namespace SMS.Repository.Services
                 return new ApiResponse<List<DepartmentTeacherDto>>(500, "An error occurred while retrieving department teachers");
             }
         }
+
+
+        public async Task<ApiResponse<byte[]>> ExportDepartmentsToExcelAsync()
+        {
+            try
+            {
+                var departments = await _context.Departments.ToListAsync();
+
+                using var workbook = new XLWorkbook();
+                var worksheet = workbook.Worksheets.Add("Departments");
+
+                worksheet.Cell(1, 1).Value = "Id";
+                worksheet.Cell(1, 2).Value = "Name";
+
+                for (int i = 0; i < departments.Count; i++)
+                {
+                    worksheet.Cell(i + 2, 1).Value = departments[i].Id;
+                    worksheet.Cell(i + 2, 2).Value = departments[i].Name;
+                }
+
+                using var stream = new MemoryStream();
+                workbook.SaveAs(stream);
+                var excelData = stream.ToArray();
+
+                return new ApiResponse<byte[]>(200, "Departments exported successfully", excelData);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while exporting departments to Excel");
+                return new ApiResponse<byte[]>(500, "An error occurred while exporting departments to Excel");
+            }
+        }
+
+        public async Task<ApiResponse<string>> ImportDepartmentsFromExcelAsync(IFormFile file)
+        {
+            try
+            {
+                if (file == null || file.Length == 0)
+                    return new ApiResponse<string>(400, "No file uploaded");
+
+                using var stream = new MemoryStream();
+                await file.CopyToAsync(stream);
+                using var workbook = new XLWorkbook(stream);
+                var worksheet = workbook.Worksheet(1);
+
+                var rows = worksheet.RangeUsed().RowsUsed().Skip(1); // Skip header
+                foreach (var row in rows)
+                {
+                    var name = row.Cell(2).GetString();
+                    if (!string.IsNullOrWhiteSpace(name))
+                    {
+                        var department = new Department { Name = name };
+                        _context.Departments.Add(department);
+                    }
+                }
+
+                await _context.SaveChangesAsync();
+                return new ApiResponse<string>(200, "Departments imported successfully");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while importing departments from Excel");
+                return new ApiResponse<string>(500, "An error occurred while importing departments from Excel");
+            }
+        }
+
     }
 }
