@@ -1,4 +1,3 @@
-```markdown
 # 🎓 Student Management System - ASP.NET Core Web API Project
 _________________________________________________________
 
@@ -35,17 +34,19 @@ _________________________________________________________
 _________________________________________________________
 
 ## 📁 Project Structure
-| Project Part        | Description |
-|---------------------|-------------|
-| **Controllers**     | Contains all API endpoint controllers |
-| **DTOs**            | Data Transfer Objects used for input/output |
-| **Models**          | EF Core models for Students, Teachers, Courses, etc. |
-| **Services**        | Interfaces and implementations of business logic |
-| **Middlewares**     | Custom middleware for logging and error handling |
-| **Validators**      | FluentValidation classes for input validation |
-| **Helpers**         | Mapping profiles for AutoMapper |
-| **wwwroot/Templates** | Email HTML templates |
-_________________________________________________________
+
+| Project Part          | Description                                          |
+|---------------------- |------------------------------------------------------|
+| **Controllers**       | Contains all API endpoint controllers                |
+| **DTOs**              | Data Transfer Objects used for input/output          |
+| **Models**            | EF Core models for Students, Teachers, Courses, etc. |
+| **Services**          | Interfaces and implementations of business logic     |
+| **Middlewares**       | Custom middleware for logging and error handling     |
+| **Validators**        | FluentValidation classes for input validation        |
+| **Helpers**           | Mapping profiles for AutoMapper                      |
+| **wwwroot/Templates** | Email HTML templates                                 |
+
+______
 
 ## 🔐 Authentication & Authorization
 - **JWT Token-based Authentication**
