@@ -12,8 +12,8 @@ using SMS.Repository.Data.Context;
 namespace SMS.Repository.Data.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20250729094323_InetialCreate")]
-    partial class InetialCreate
+    [Migration("20250802131545_Inetialcreate")]
+    partial class Inetialcreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -236,8 +236,8 @@ namespace SMS.Repository.Data.Migrations
                     b.Property<decimal>("Grade")
                         .HasColumnType("decimal(5,2)");
 
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
+                    b.Property<string>("StudentId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -261,12 +261,9 @@ namespace SMS.Repository.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AppUserId")
-                        .IsUnique();
 
                     b.ToTable("Students");
                 });
@@ -451,8 +448,7 @@ namespace SMS.Repository.Data.Migrations
                     b.HasOne("SMS.Core.Models.Entities.Student", "Student")
                         .WithMany("Enrollments")
                         .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasPrincipalKey("AppUserId");
 
                     b.Navigation("Course");
 

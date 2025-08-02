@@ -8,6 +8,6 @@ namespace SMS.Core.Models.Account.AddUser
 {
     public class AddStudentRequest : RegisterRequest
     {
-        public DateOnly DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
     }
 }

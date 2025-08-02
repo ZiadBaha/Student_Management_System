@@ -66,6 +66,12 @@ namespace SMS.Repository.Services
         {
             try
             {
+                var exists = await _context.Departments
+                    .AnyAsync(d => d.Name.Trim().ToLower() == dto.Name.Trim().ToLower());
+
+                if (exists)
+                    return new ApiResponse<int>(400, $"Department with name '{dto.Name}' already exists");
+
                 var department = _mapper.Map<Department>(dto);
                 _context.Departments.Add(department);
                 await _context.SaveChangesAsync();
@@ -79,6 +85,7 @@ namespace SMS.Repository.Services
             }
         }
 
+
         public async Task<ApiResponse<bool>> UpdateDepartmentAsync(UpdateDepartmentDto dto)
         {
             try
@@ -86,6 +93,12 @@ namespace SMS.Repository.Services
                 var department = await _context.Departments.FindAsync(dto.Id);
                 if (department == null)
                     return new ApiResponse<bool>(404, "Department not found");
+
+                var duplicate = await _context.Departments
+                    .AnyAsync(d => d.Id != dto.Id && d.Name.Trim().ToLower() == dto.Name.Trim().ToLower());
+
+                if (duplicate)
+                    return new ApiResponse<bool>(400, $"Another department with name '{dto.Name}' already exists");
 
                 _mapper.Map(dto, department);
                 _context.Departments.Update(department);
@@ -193,19 +206,28 @@ namespace SMS.Repository.Services
                 using var workbook = new XLWorkbook(stream);
                 var worksheet = workbook.Worksheet(1);
 
-                var rows = worksheet.RangeUsed().RowsUsed().Skip(1); // Skip header
+                var rows = worksheet.RangeUsed().RowsUsed().Skip(1); 
+                int addedCount = 0;
+
                 foreach (var row in rows)
                 {
-                    var name = row.Cell(2).GetString();
+                    var name = row.Cell(2).GetString().Trim();
                     if (!string.IsNullOrWhiteSpace(name))
                     {
-                        var department = new Department { Name = name };
-                        _context.Departments.Add(department);
+                        var exists = await _context.Departments
+                            .AnyAsync(d => d.Name.Trim().ToLower() == name.ToLower());
+
+                        if (!exists)
+                        {
+                            var department = new Department { Name = name };
+                            _context.Departments.Add(department);
+                            addedCount++;
+                        }
                     }
                 }
 
                 await _context.SaveChangesAsync();
-                return new ApiResponse<string>(200, "Departments imported successfully");
+                return new ApiResponse<string>(200, $"Departments imported successfully. {addedCount} added.");
             }
             catch (Exception ex)
             {

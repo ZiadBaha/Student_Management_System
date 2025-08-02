@@ -47,16 +47,50 @@ namespace SMS.Controllers
 
             return StatusCode(result.StatusCode, result);
         }
+        [HttpPost("import-students")]
+        public async Task<IActionResult> ImportStudentsFromExcel(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return BadRequest(new ApiResponse<string>(400, "No file uploaded"));
+
+            var result = await _adminService.ImportStudentsFromExcelAsync(file);
+            return StatusCode(result.StatusCode, result);
+        }
+
+        [HttpPost("import-teachers")]
+        public async Task<IActionResult> ImportTeachersFromExcel(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return BadRequest(new ApiResponse<string>(400, "No file uploaded"));
+
+            var result = await _adminService.ImportTeachersFromExcelAsync(file);
+            return StatusCode(result.StatusCode, result);
+        }
 
 
-        #region AddUser
+        [HttpGet("export-teachers")]
+        public async Task<IActionResult> ExportTeachers()
+        {
+            var result = await _adminService.ExportTeachersToExcelAsync();
+            if (result.StatusCode != 200)
+                return StatusCode(result.StatusCode, result);
 
-        //[HttpPost("add-user")]
-        //public async Task<IActionResult> AddUser([FromBody] RegisterRequest request, [FromQuery] UserRole role)
-        //{
-        //    var result = await _adminService.AddUserAsync(request, role);
-        //    return StatusCode(result.StatusCode, result);
-        //} 
-        #endregion
+            return File(result.Data,
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "Teachers.xlsx");
+        }
+
+        [HttpGet("export-students")]
+        public async Task<IActionResult> ExportStudents()
+        {
+            var result = await _adminService.ExportStudentsToExcelAsync();
+            if (result.StatusCode != 200)
+                return StatusCode(result.StatusCode, result);
+
+            return File(result.Data,
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "Students.xlsx");
+        }
+
     }
 }

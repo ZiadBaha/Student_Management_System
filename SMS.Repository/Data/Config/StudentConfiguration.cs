@@ -19,7 +19,9 @@ namespace SMS.Repository.Data.Config
                    .OnDelete(DeleteBehavior.Cascade);
 
             builder.Property(s => s.DateOfBirth)
-                   .IsRequired();
+                   .IsRequired()
+                   .HasColumnType("datetime"); 
         }
     }
+
 }

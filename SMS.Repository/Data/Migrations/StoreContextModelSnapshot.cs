@@ -258,7 +258,7 @@ namespace SMS.Repository.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.HasKey("Id");
 

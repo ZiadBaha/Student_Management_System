@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SMS.Repository.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InetialCreate : Migration
+    public partial class Inetialcreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -193,11 +193,12 @@ namespace SMS.Repository.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DateOfBirth = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Students", x => x.Id);
+                    table.UniqueConstraint("AK_Students_AppUserId", x => x.AppUserId);
                     table.ForeignKey(
                         name: "FK_Students_AspNetUsers_AppUserId",
                         column: x => x.AppUserId,
@@ -238,7 +239,7 @@ namespace SMS.Repository.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StudentId = table.Column<int>(type: "int", nullable: false),
+                    StudentId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CourseId = table.Column<int>(type: "int", nullable: false),
                     Grade = table.Column<decimal>(type: "decimal(5,2)", nullable: false)
                 },
@@ -255,8 +256,7 @@ namespace SMS.Repository.Data.Migrations
                         name: "FK_Enrollments_Students_StudentId",
                         column: x => x.StudentId,
                         principalTable: "Students",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "AppUserId");
                 });
 
             migrationBuilder.CreateTable(
@@ -343,12 +343,6 @@ namespace SMS.Repository.Data.Migrations
                 name: "IX_Enrollments_StudentId",
                 table: "Enrollments",
                 column: "StudentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Students_AppUserId",
-                table: "Students",
-                column: "AppUserId",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Teachers_AppUserId",

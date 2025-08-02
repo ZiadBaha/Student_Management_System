@@ -16,7 +16,7 @@ namespace SMS.Core.Validators.Account
 
             RuleFor(x => x.DateOfBirth)
                 .NotEmpty()
-                .LessThan(DateOnly.FromDateTime(DateTime.Today))
+                .LessThan(DateTime.Today)
                 .WithMessage("Date of birth must be in the past.");
         }
     }
