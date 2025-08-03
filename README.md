@@ -73,23 +73,43 @@ _________________________________________________________
 _________________________________________________________
 
 ## 📡 Standard API Response
+| Property     | Type     | Description                                  |
+|--------------|----------|----------------------------------------------|
+| `statusCode` | `int`    | HTTP-like status code (e.g. 200, 400, 500)   |
+| `message`    | `string` | Success or error message                     |
+| `data`       | `T`      | Generic response payload (nullable if error) |
 ```json
-// Success:
+// ✅ 200 OK
 {
-  "StatusCode": 200,
-  "message": "Student added successfully.",
+  "statusCode": 200,
+  "message": "Fetched successfully.",
   "data": {
-    "id": 1,
-    "name": "Ahmed Ali"
+    "id": "123",
+    "name": "Ahmed"
   }
 }
 
-// Error:
+// ❌ 400 Bad Request (Validation)
 {
-  "StatusCode": 404,
-  "message": "Validation failed.",
+  "statusCode": 400,
+  "message": "Invalid input data.",
   "data": null
 }
+
+// ❌ 401 Unauthorized
+{
+  "statusCode": 401,
+  "message": "User not authenticated.",
+  "data": null
+}
+
+// ❌ 500 Internal Server Error
+{
+  "statusCode": 500,
+  "message": "An error occurred. Try again",
+  "data": null
+}
+
 ```
 _________________________________________________________
 
