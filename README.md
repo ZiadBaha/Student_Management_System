@@ -59,8 +59,8 @@ _________________________________________________________
 ## 💌 Mail Configuration
 ```json
 "MailSettings": {
-  "Email": "example@gmail.com",
-  "Password": "your-password",
+  "Email": "ziadbahaa41@gmail.com",
+  "Password": "password",
   "SmtpServer": "smtp.gmail.com",
   "Port": 587,
   "DisplayedName": "Student Management System"
@@ -76,7 +76,7 @@ _________________________________________________________
 ```json
 // Success:
 {
-  "success": true,
+  "StatusCode": 200,
   "message": "Student added successfully.",
   "data": {
     "id": 1,
@@ -86,7 +86,7 @@ _________________________________________________________
 
 // Error:
 {
-  "success": false,
+  "StatusCode": 404,
   "message": "Validation failed.",
   "data": null
 }
@@ -97,20 +97,21 @@ _________________________________________________________
 ### 1. AccountController
 ```http
 POST    /api/account/login
-POST    /api/account/register
-GET     /api/account/get-users
-GET     /api/account/get-user-info/{id}
-DELETE  /api/account/delete-user/{id}
-PUT     /api/account/update-user
+POST    /api/account/forget-password
+POST    /api/account/verify-otp
+POST    /api/account/reset-password
+GET     /api/account/confirm-email
+POST    /api/account/change-password
+PUT     /api/account/update-user-info
+GET     /api/account/get-user-info
 ```
 
 ### 2. StudentController
 ```http
-POST    /api/student/add
-GET     /api/student/get-all
-GET     /api/student/{id}
-PUT     /api/student/update/{id}
-DELETE  /api/student/delete/{id}
+PUT     /api/student/UpdateStudent/{id}
+DELETE  /api/student/DeleteStudent/{id}
+GET     /api/student/GetAllStudents
+GET     /api/student/GetStudentById/{id}
 ```
 
 ### 3. TeacherController
@@ -124,34 +125,51 @@ DELETE  /api/teacher/delete/{id}
 
 ### 4. CourseController
 ```http
-POST    /api/course/add
-GET     /api/course/get-all
-PUT     /api/course/update/{id}
-DELETE  /api/course/delete/{id}
+POST    /api/course/CreateCourse
+PUT     /api/course/UpdateCourse
+DELETE  /api/course/DeleteCourse/{id}
+GET     /api/course/GetAllCourses
+GET     /api/course/GetCourseById/{id}
+GET     /api/course/GetEnrolledStudents/{courseId}
+GET     /api/course/GetCourseTeachers/{courseId}
 ```
 
 ### 5. DepartmentController
 ```http
-POST    /api/department/create
-GET     /api/department/get-all
-PUT     /api/department/update/{id}
-DELETE  /api/department/delete/{id}
+POST    /api/department/CreateDepartment
+PUT     /api/department/UpdateDepartment
+DELETE  /api/department/DeleteDepartment/{id}
+GET     /api/department/GetAllDepartments
+GET     /api/department/GetDepartmentById/{id}
+GET     /api/department/GetDepartmentTeachers/{departmentId}
+GET     /api/department/ExportDepartmentsToExcel
+POST    /api/department/ImportDepartmentsFromExcel
 ```
 
 ### 6. StudentCourseController
 ```http
 POST    /api/student-course/add
+POST    /api/student-course/remove
 PUT     /api/student-course/update
-DELETE  /api/student-course/remove
 GET     /api/student-course/{studentId}
 ```
 
 ### 7. TeacherCourseController
 ```http
 POST    /api/teacher-course/add
+POST    /api/teacher-course/remove
 PUT     /api/teacher-course/update
-DELETE  /api/teacher-course/remove
 GET     /api/teacher-course/{teacherId}
+GET     /api/teacher-course/all-with-courses
+```
+### 8. AdminController
+```http
+POST    /api/admin/add-student
+POST    /api/admin/add-teacher
+POST    /api/admin/import-students
+POST    /api/admin/import-teachers
+GET     /api/admin/export-students
+GET     /api/admin/export-teachers
 ```
 _________________________________________________________
 
