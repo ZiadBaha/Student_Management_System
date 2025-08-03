@@ -216,16 +216,36 @@ _________________________________________________________
 _________________________________________________________
 
 ## 📦 NuGet Packages
-| Package | Purpose |
-|---------|---------|
-| `Microsoft.EntityFrameworkCore.SqlServer` | EF Core DB provider |
-| `Microsoft.AspNetCore.Identity.EntityFrameworkCore` | Identity |
-| `Swashbuckle.AspNetCore` | Swagger docs |
-| `AutoMapper` | DTO Mapping |
-| `FluentValidation.AspNetCore` | Input validation |
-| `MailKit`, `MimeKit` | Email handling |
-| `System.Drawing.Common` | File/Image handling |
-| `Microsoft.AspNetCore.Authentication.JwtBearer` | JWT authentication |
+| Package                                                 | Purpose                        |
+|---------------------------------------------------------|--------------------------------|
+| `FluentValidation (12.0.0)`                             | Model validation              |
+| `FluentValidation.DependencyInjectionExtensions (12.0.0)`| Registering validators via DI |
+| `Microsoft.AspNetCore.Hosting (2.3.0)`                  | ASP.NET hosting                |
+| `Microsoft.AspNetCore.Mvc.NewtonsoftJson (9.0.7)`       | JSON serialization             |
+| `Microsoft.AspNetCore.OpenApi (9.0.4)`                  | OpenAPI support                |
+| `Microsoft.EntityFrameworkCore.Design (9.0.7)`          | EF Core design-time tools      |
+| `Microsoft.EntityFrameworkCore.SqlServer (9.0.7)`       | SQL Server EF provider         |
+| `Microsoft.EntityFrameworkCore.Tools (9.0.7)`           | EF Core CLI tools              |
+| `Microsoft.AspNetCore.Identity.EntityFrameworkCore (9.0.7)` | Identity support with EF |
+| `Microsoft.AspNetCore.Mvc.Core (2.3.0)`                 | ASP.NET MVC core               |
+| `Microsoft.Extensions.Hosting.Abstractions (9.0.7)`     | Hosting abstractions           |
+| `Microsoft.Extensions.Configuration.Aptractions (9.0.7)`| Config abstraction             |
+| `Microsoft.AspNetCore.Authentication.JwtBearer (9.0.7)` | JWT authentication             |
+| `Newtonsoft.Json (13.0.3)`                              | JSON handling                  |
+| `Swashbuckle.AspNetCore (9.0.3)`                        | Swagger UI documentation       |
+| `AutoMapper (14.0.0)`                                   | Object mapping                 |
+| `ClosedXML (0.105.0)`                                   | Excel export/import            |
+| `ExcelDataReader (3.7.0)`                               | Excel file reader              |
+| `ExcelDataReader.DataSet (3.7.0)`                       | Excel DataSet support          |
+| `MailKit (4.13.0)`                                      | Email sending                  |
+| `MimeKit (4.13.0)`                                      | MIME format support            |
+| `Otp.NET (1.4.0)`                                       | OTP generation/verification    |
+| `FluentAssertions (8.5.0)`                              | Unit test assertions           |
+| `Microsoft.EntityFrameworkCore.InMemory (9.0.7)`        | In-memory EF DB for testing    |
+| `Microsoft.NET.Test.Sdk (17.14.1)`                      | xUnit test SDK                 |
+| `Moq (4.20.72)`                                         | Mocking for unit tests         |
+| `xunit (2.9.3)`                                         | Unit testing framework         |
+| `xunit.runner.visualstudio (3.1.3)`                     | Test runner support            |
 _________________________________________________________
 
 ## 🏁 Run the Project Locally
