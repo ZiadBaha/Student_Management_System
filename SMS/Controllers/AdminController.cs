@@ -11,7 +11,7 @@ using System.Net;
 namespace SMS.Controllers
 {
 
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminController : ApiBaseController
     {
         private readonly IAdminService _adminService;

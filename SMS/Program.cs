@@ -30,10 +30,6 @@ public class Program
         {
             Console.WriteLine("Error during seeding: " + ex.Message);
         }
-
-
-
-
         MiddlewareConfigurator.Configure(app, builder.Environment);
 
         app.Run();

@@ -412,7 +412,7 @@ namespace SMS.Repository.Services
                     var firstName = row.Cell(1).GetString().Trim();
                     var lastName = row.Cell(2).GetString().Trim();
                     var email = row.Cell(3).GetString().Trim();
-                    var dobString = row.Cell(4).GetString().Trim();
+                    var dobString = row.Cell(6).GetString().Trim();
 
                     if (!DateTime.TryParse(dobString, out var dob) || string.IsNullOrWhiteSpace(email))
                         continue;
