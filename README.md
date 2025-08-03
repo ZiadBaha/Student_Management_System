@@ -266,17 +266,7 @@ _________________________________________________________
 | `Moq (4.20.72)`                                         | Mocking for unit tests         |
 | `xunit (2.9.3)`                                         | Unit testing framework         |
 | `xunit.runner.visualstudio (3.1.3)`                     | Test runner support            |
-_________________________________________________________
 
-## 🏁 Run the Project Locally
-```bash
-git clone https://github.com/your-username/sms-project.git
-cd sms-project
-dotnet restore
-dotnet ef database update
-dotnet run
-```
-Visit `https://localhost:{port}/swagger` to explore the API
 _________________________________________________________
 ## 🏗️ Architecture & Design
 
